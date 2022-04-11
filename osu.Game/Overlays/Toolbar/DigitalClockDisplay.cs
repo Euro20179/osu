@@ -45,7 +45,7 @@ namespace osu.Game.Overlays.Toolbar
                 UpdateDisplay(DateTimeOffset.Now); //Update realTime.Text immediately instead of waiting until next second
             }
         }
-        
+
         private string preferTimeFormat;
         public string PreferTimeFormat
         {
@@ -81,22 +81,23 @@ namespace osu.Game.Overlays.Toolbar
 
         protected override void UpdateDisplay(DateTimeOffset now)
         {
-            if(use24HourDisplay){
+            if (use24HourDisplay)
+            {
                 realTime.Text = $"{now:HH:mm:ss}";
-            } else{
+            }
+            else if (preferTimeFormat != "")
+            {
                 //if the string is empty, c# has a default time format that we dont want to use, so use the fallback value
-                if(preferTimeFormat != ""){
-                    try{
-                        realTime.Text = now.ToString(preferTimeFormat);
-                    }
-                    //if the user types something like :, that is an invalid time format
-                    catch(System.FormatException){
-                        realTime.Text = now.ToString("hh:mm:ss tt");
-                    }
+                try{
+                    realTime.Text = now.ToString(preferTimeFormat);
                 }
-                else{
+                //if the user types something like :, that is an invalid time format
+                catch(System.FormatException){
                     realTime.Text = now.ToString("hh:mm:ss tt");
                 }
+            }
+            else{
+                realTime.Text = now.ToString("hh:mm:ss tt");
             }
             gameTime.Text = $"running {new TimeSpan(TimeSpan.TicksPerSecond * (int)(Clock.CurrentTime / 1000)):c}";
         }
