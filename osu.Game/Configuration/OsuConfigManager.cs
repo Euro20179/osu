@@ -105,6 +105,7 @@ namespace osu.Game.Configuration
 
             // See https://stackoverflow.com/a/63307411 for default sourcing.
             SetDefault(OsuSetting.Prefer24HourTime, CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern.Contains(@"tt"));
+            SetDefault(OsuSetting.PreferTimeFormat, "HH:mm:ss tt");
 
             // Gameplay
             SetDefault(OsuSetting.PositionalHitsounds, true); // replaced by level setting below, can be removed 20220703.
@@ -292,6 +293,7 @@ namespace osu.Game.Configuration
         CursorRotation,
         MenuParallax,
         Prefer24HourTime,
+        PreferTimeFormat,
         BeatmapDetailTab,
         BeatmapDetailModsFilter,
         Username,

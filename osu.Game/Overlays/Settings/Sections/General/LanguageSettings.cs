@@ -40,6 +40,11 @@ namespace osu.Game.Overlays.Settings.Sections.General
                     LabelText = GeneralSettingsStrings.Prefer24HourTimeDisplay,
                     Current = config.GetBindable<bool>(OsuSetting.Prefer24HourTime)
                 },
+                new SettingsTextBox
+                {
+                   LabelText = GeneralSettingsStrings.PreferTimeFormat,
+                   Current = config.GetBindable<string>(OsuSetting.PreferTimeFormat)
+                }
             };
 
             if (!LanguageExtensions.TryParseCultureCode(frameworkLocale.Value, out var locale))

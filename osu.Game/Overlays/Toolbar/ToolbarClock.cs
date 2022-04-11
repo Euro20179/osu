@@ -21,6 +21,7 @@ namespace osu.Game.Overlays.Toolbar
     {
         private Bindable<ToolbarClockDisplayMode> clockDisplayMode;
         private Bindable<bool> prefer24HourTime;
+        private Bindable<string> preferTimeFormat;
 
         private Box hoverBackground;
         private Box flashBackground;
@@ -40,6 +41,7 @@ namespace osu.Game.Overlays.Toolbar
         {
             clockDisplayMode = config.GetBindable<ToolbarClockDisplayMode>(OsuSetting.ToolbarClockDisplayMode);
             prefer24HourTime = config.GetBindable<bool>(OsuSetting.Prefer24HourTime);
+            preferTimeFormat = config.GetBindable<string>(OsuSetting.PreferTimeFormat);
 
             Children = new Drawable[]
             {
@@ -98,6 +100,7 @@ namespace osu.Game.Overlays.Toolbar
             }, true);
 
             prefer24HourTime.BindValueChanged(prefer24H => digital.Use24HourDisplay = prefer24H.NewValue, true);
+            preferTimeFormat.BindValueChanged(timeFormat => digital.PreferTimeFormat = timeFormat.NewValue, true);
         }
 
         protected override bool OnClick(ClickEvent e)
